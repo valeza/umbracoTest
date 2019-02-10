@@ -1,0 +1,20 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Login>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+}
+
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+
+<section class="section">
+    <div class="container">
+        <div class="col-md-12">
+            <article>
+                @Html.GetGridHtml(Model.Content, "bodyText", "bootstrap3-fluid")
+            </article>
+        </div>
+        <div class="col-md-12">
+            @{ Html.RenderAction("RenderLogin", "Member"); }
+        </div>
+    </div>
+</section>

@@ -8,7 +8,7 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "904b5d94bd7f71cd")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "4095a59285e5d777")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
@@ -1127,6 +1127,50 @@ namespace Umbraco.Web.PublishedContentModels
 		public bool UmbracoNavihide
 		{
 			get { return Umbraco.Web.PublishedContentModels.NavigationBase.GetUmbracoNavihide(this); }
+		}
+	}
+
+	/// <summary>Login</summary>
+	[PublishedContentModel("login")]
+	public partial class Login : PublishedContentModel, IContentBase
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "login";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Login(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Login, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Content
+		///</summary>
+		[ImplementPropertyType("bodyText")]
+		public Newtonsoft.Json.Linq.JToken BodyText
+		{
+			get { return Umbraco.Web.PublishedContentModels.ContentBase.GetBodyText(this); }
+		}
+
+		///<summary>
+		/// Page Title: The title of the page, this is also the first text in a google search result. The ideal length is between 40 and 60 characters
+		///</summary>
+		[ImplementPropertyType("pageTitle")]
+		public string PageTitle
+		{
+			get { return Umbraco.Web.PublishedContentModels.ContentBase.GetPageTitle(this); }
 		}
 	}
 
