@@ -45,7 +45,8 @@ a {
 }
 
     a:active, a:hover {
-        outline: 0
+        outline: 0;
+        text-decoration: none;
     }
 
 abbr[title] {
@@ -1081,7 +1082,8 @@ article body.theme-color-water a, article body.theme-color-water a:visited, body
 }
 
 body.theme-color-water--active.nav-link:visited, body.theme-color-water .border-main-color, body.theme-color-water .button--border, body.theme-color-water .nav-link--active, body.theme-color-water .nav-link:hover {
-    border-color: #fff
+    border-color: #fff;
+    text-decoration: none;
 }
 
 .product-grid__item:hover body.theme-color-sun .product-grid__item__name, .product-grid__item:hover body.theme-color-sun .product-grid__item__price, body.theme-color-sun .bg-main-color, body.theme-color-sun .button--border--solid, body.theme-color-sun .mobile-nav, body.theme-color-sun .product-grid__item:hover .product-grid__item__name, body.theme-color-sun .product-grid__item:hover .product-grid__item__price, body.theme-color-sun .section--themed {
@@ -1348,7 +1350,7 @@ body.frontpage .header:not(.header--fixed) .nav-link {
 }
 
     body.frontpage .header:not(.header--fixed) .nav-link--active, body.frontpage .header:not(.header--fixed) .nav-link:hover {
-        border-bottom-color: #fff
+        border-bottom-color: #fff; text-decoration: none;
     }
 
 body.frontpage .header:not(.header--fixed) .hamburger span, body.frontpage .header:not(.header--fixed) .hamburger span:after, body.frontpage .header:not(.header--fixed) .hamburger span:before {
@@ -3313,4 +3315,12 @@ input[type="button"].btn-block {
 
 .validation-summary-errors{
     color: red;
+}
+
+.text-center{
+    text-align: center;
+}
+.logo a:hover{
+    text-decoration: none !important;
+    border-bottom: none !important;
 }

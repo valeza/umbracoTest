@@ -1,0 +1,49 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Assignment>
+@using Umbraco.Web;
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+    string files = Model.Content.HasProperty("files")? Model.Content.GetPropertyValue<string>("files") : null;
+    IPublishedContent parent = Model.Content.AncestorsOrSelf().First(x => x.DocumentTypeAlias == "homework");
+
+}
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+@if (!Umbraco.MemberIsLoggedOn())
+{
+    <section class="section">
+        <div class="container">
+            <div class="col-md-12">
+                <p class="alert alert-danger">You are not logged in</p>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    if (parent != null)
+    { 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <br />
+                    <br />
+                    <a class="btn btn-primary" href="@parent.Url"><span class="glyphicon glyphicon-chevron-left"></span> @parent.Name</a>
+                </div>
+            </div>
+        </div>
+    }
+    
+    <section class="section">
+        <div class="container">
+            <div class="col-md-12">
+                @Html.GetGridHtml(Model.Content, "bodyText", "bootstrap3-fluid")
+            </div>
+            @if (files != null)
+            {
+                <div class="col-md-12">
+                    <a href="@files">Download Assignment Files</a>
+                </div>
+            }
+        </div>
+    </section>
+}

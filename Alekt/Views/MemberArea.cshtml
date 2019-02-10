@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.MemberArea>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@using Umbraco.Web;
+@{
+    Layout = "Master.cshtml";
+}
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+
+
+@if (!Umbraco.MemberIsLoggedOn())
+{
+    <p class="text-danger">You are not logged in</p>
+}
+else
+{
+    <p class="text-success">You are logged in</p>
+}

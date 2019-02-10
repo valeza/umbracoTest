@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Lessons>
+@using Umbraco.Web;
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+}
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+
+@if (!Umbraco.MemberIsLoggedOn())
+{
+    <section class="section">
+        <div class="container">
+            <div class="col-md-12">
+                <p class="alert alert-danger">You are not logged in</p>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <section class="section">
+        <div class="container">
+            <div class="col-md-12">
+                @Html.GetGridHtml(Model.Content, "bodyText", "bootstrap3-fluid")
+            </div>
+        </div>
+    </section>
+}

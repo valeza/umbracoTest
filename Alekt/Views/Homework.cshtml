@@ -1,0 +1,42 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Homework>
+@using Umbraco.Web;
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+    var children = CurrentPage.Children;
+}
+@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
+@if (!Umbraco.MemberIsLoggedOn())
+{
+    <section class="section">
+        <div class="container">
+            <div class="col-md-12">
+                <p class="alert alert-danger">You are not logged in</p>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <section class="section">
+        <div class="container">
+            <div class="col-md-12">
+                @Html.GetGridHtml(Model.Content, "bodyText", "bootstrap3-fluid")
+            </div>
+            <div class="col-md-12">
+                <ul>
+                    @foreach (IPublishedContent item in children)
+                    {
+                        <li>
+                            @if (item.HasProperty("date"))
+                            {
+                            <strong>Date: @umbraco.library.FormatDateTime(item.GetPropertyValue("date").ToString(), "dd-MM-yyyy")</strong>
+                            }
+                            <span>&nbsp;</span>The assignment is available <a href="@item.Url">here</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </section>
+}
