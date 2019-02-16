@@ -1,12 +1,45 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using Umbraco.Web;
-@{ 
+@{
+    /**/
+
     var site = Model.Content.Site();
     var selection = site.Children.Where(x => x.IsVisible() && (!x.HasProperty("excludeFromMenu") || !x.GetPropertyValue<bool>("excludeFromMenu")));
-    }
-    <!-- uncomment this line if you don't want it to appear in the top navigation -->
-    <a class="nav-link @Html.Raw(Model.Content.Id == site.Id ? "navi-link--active" : "")" href="@site.Url">@site.Name</a>
-    @foreach (var item in selection)
+}
+<!-- uncomment this line if you don't want it to appear in the top navigation -->
+<a class="nav-link @Html.Raw(Model.Content.Id == site.Id ? "nav-link--active" : "")" href="@site.Url">@site.Name</a>
+@foreach (var item in selection)
+{
+    var className = "nav-link" + (item.IsAncestorOrSelf(Model.Content) ? " nav-link--active" : "");
+    if (item.Children.Any())
     {
-        <a class="nav-link @(item.IsAncestorOrSelf(Model.Content) ? "nav-link--active" : null)" href="@item.Url">@item.Name</a>
+        var dropdownClassName = className + " dropdown-toggle";
+        <div class="dropdown">
+            <a class="@dropdownClassName" id="@item.Id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">@item.Name <span class="caret"></span></a>
+            <ul class="dropdown-menu" aria-labelledby="@item.Id">
+                <!--<li><a class="nav-link sub-link" href="@item.Url">@item.Name</a></li>-->
+                @foreach (var child in item.Children)
+                {
+                    <li> <a class="nav-link sub-link" href="@child.Url">@child.Name</a> </li>
+                }
+            </ul>
+        </div>
+
     }
+    else
+    {
+        if (item.DocumentTypeAlias == "login")
+        {
+            className += " hidden-md hidden-lg hidden-xl";
+        }
+        <a class="@className" href="@item.Url">@item.Name</a>
+    }
+}
+<div class="dropdown navbar-right hidden-xs hidden-sm">
+    <a class="dropdown-toggle nav-link" id="user-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <span class="glyphicon glyphicon-user"></span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-menu">
+        @{ Html.RenderAction("RenderLogin", "Member"); }
+    </div>
+</div>

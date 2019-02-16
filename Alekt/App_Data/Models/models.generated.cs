@@ -19,7 +19,7 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "858a7a5e8c64ae21")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "eb157e0c68857671")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
 
 namespace Umbraco.Web.PublishedContentModels
@@ -623,7 +623,7 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// Exclude From Menu
+		/// Only for logged In
 		///</summary>
 		[ImplementPropertyType("excludeFromMenu")]
 		public bool ExcludeFromMenu
