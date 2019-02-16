@@ -1,18 +1,37 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Login>
 @using ContentModels = Umbraco.Web.PublishedContentModels;
+@using Umbraco.Web
 @{
     Layout = "Master.cshtml";
+    var site = Model.Content.Site();
+    var selection = site.Children.Where(x => x.IsVisible() && (x.HasProperty("excludeFromMenu") && x.GetPropertyValue<bool>("excludeFromMenu")));
 }
 
 @Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 
-<section class="section">
-    <div class="container">
-        <div class="col-md-12">
-            @Html.GetGridHtml(Model.Content, "bodyText", "bootstrap3-fluid")
+<section class="section login">
+    @if (Umbraco.MemberIsLoggedOn())
+    {
+        <div class="container member-only-nav">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Member only pages</h1>
+                </div>
+                <div class="col-md-12">
+                    @Html.Partial("~/views/partials/navigation/MemberNavigation.cshtml")
+                </div>
+            </div>
         </div>
-        <div class="col-md-6">
-            @{ Html.RenderAction("RenderLogin", "Member"); }
+    }
+    else
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    @{ Html.RenderAction("RenderLogin", "Member"); }
+                </div>
+            </div>
         </div>
-    </div>
+    }
 </section>
+

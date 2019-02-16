@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "eb157e0c68857671")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "fb8c8befdcb71160")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.6")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -630,6 +630,15 @@ namespace Umbraco.Web.PublishedContentModels
 		{
 			get { return this.GetPropertyValue<bool>("excludeFromMenu"); }
 		}
+
+		///<summary>
+		/// Link Image
+		///</summary>
+		[ImplementPropertyType("linkImage")]
+		public IPublishedContent LinkImage
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("linkImage"); }
+		}
 	}
 
 	/// <summary>Lessons</summary>
@@ -761,6 +770,110 @@ namespace Umbraco.Web.PublishedContentModels
 		public string Files
 		{
 			get { return this.GetPropertyValue<string>("files"); }
+		}
+	}
+
+	/// <summary>Grammar</summary>
+	[PublishedContentModel("grammar")]
+	public partial class Grammar : MemberArea
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "grammar";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Grammar(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Grammar, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+	}
+
+	/// <summary>Listening</summary>
+	[PublishedContentModel("listening")]
+	public partial class Listening : MemberArea
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "listening";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Listening(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Listening, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+	}
+
+	/// <summary>Reading</summary>
+	[PublishedContentModel("reading")]
+	public partial class Reading : MemberArea
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "reading";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Reading(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Reading, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+	}
+
+	/// <summary>Calendar</summary>
+	[PublishedContentModel("calendar")]
+	public partial class Calendar : MemberArea
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "calendar";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Calendar(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Calendar, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}
 	}
 

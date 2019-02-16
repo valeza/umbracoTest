@@ -41,7 +41,10 @@
                             }), $(".mobile-nav-handler").click(function(e) {
                             $(".mobile-nav").toggleClass("mobile-nav--open"), $(".header").toggleClass("header--hide"),
                                 $("body").toggleClass("no-scroll"), $("#toggle-nav").toggleClass("active")
-                        }), $(".nav-link").click(function(e) {
+                            }), $(".nav-link").click(function (e) {
+                            if ($(this).hasClass("dropdown") || $(this).hasClass("dropdown-toggle")) {
+                                return;
+                            }
                             $(".mobile-nav").removeClass("mobile-nav--open"), $(".header").removeClass("header--hide"),
                                 $("body").removeClass("no-scroll"), $("#toggle-nav").removeClass("active")
                         })

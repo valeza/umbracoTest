@@ -316,6 +316,7 @@
     <Content Include="Views\Homework.cshtml" />
     <Content Include="Views\Lessons.cshtml" />
     <Content Include="Views\Assignment.cshtml" />
+    <Content Include="Views\Partials\Navigation\MemberNavigation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
