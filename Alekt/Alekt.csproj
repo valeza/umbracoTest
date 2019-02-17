@@ -317,6 +317,10 @@
     <Content Include="Views\Lessons.cshtml" />
     <Content Include="Views\Assignment.cshtml" />
     <Content Include="Views\Partials\Navigation\MemberNavigation.cshtml" />
+    <Content Include="Views\Calendar.cshtml" />
+    <Content Include="Views\Grammar.cshtml" />
+    <Content Include="Views\Listening.cshtml" />
+    <Content Include="Views\Reading.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
